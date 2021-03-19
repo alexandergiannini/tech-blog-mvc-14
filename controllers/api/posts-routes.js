@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const { Post } = require('../../models/');///User.js
+const { Post, User} = require('../../models/');///User.js
 
-// GET /api/users
+//!!! POST ROUTES not working correctly
+// GET http://localhost:3001/api/posts/
 router.get('/', (req, res) => {
     // find all categories, includes its associated Products
-    Post.findAll({
-    //  include: [Product]
+   Post.findAll({
+   //   include: [User]
     }).then(result => {
       res.json(result);
     })
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
       where: {
         id: req.params.id
       },
-    //  include: [Product]
+   //   include: [User]
     }).then(result => {
       res.json(result);
     })

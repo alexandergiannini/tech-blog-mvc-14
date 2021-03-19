@@ -1,0 +1,16 @@
+<ol class="post-list">
+  {{#each posts as |post|}}
+  <li>
+    <article class="post">
+      <div class="title">
+        <a href="{{post.title}}" target="_blank">{{post.title}}</a>
+        <span>({{post.title}})</span>
+      </div>
+      <div class="meta">
+        {{post.body}} point(s) by {{post.body}} on
+        {{post.created_at}}
+      </div>
+    </article>
+  </li>
+  {{/each}}
+</ol>

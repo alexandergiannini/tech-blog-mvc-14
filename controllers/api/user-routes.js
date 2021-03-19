@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { User } = require('../../models/');///User.js
+const { User, Post, Comment } = require('../../models/');///User.js
 
-// GET /api/users
+//  (http://localhost:3001/api/users/)
 router.get('/', (req, res) => {
     // find all categories, includes its associated Products
     User.findAll({
-    //  include: [Product]
+   //   include: [Post, Comment]
     }).then(result => {
       res.json(result);
     })
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
       where: {
         id: req.params.id
       },
-    //  include: [Product]
+   //   include: [Post, Comment]
     }).then(result => {
       res.json(result);
     })
@@ -34,6 +34,43 @@ router.post('/', (req, res) => {
     })
     // create a new category
   });
+
+
+
+  ////this url doesnt work (or when i try to login to a new user -> i need hooks??)
+  router.post('/login', (req, res) => {
+    User.findOne({
+      where: {
+        username: req.body.username
+      }
+    }).then(dbUserData => {
+      if (!dbUserData) {
+        res.status(400).json({ message: 'No user with that email address!' });
+        return;
+      }
+  
+      const validPassword = dbUserData.checkPassword(req.body.password);
+  
+      if (!validPassword) {
+        res.status(400).json({ message: 'Incorrect password!' });
+        return;
+      }
+  
+      req.session.save(() => {
+        // declare session variables
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+  
+        res.json({ user: dbUserData, message: 'You are now logged in!' });
+      });
+    });
+  });
+
+
+
+
+
   ///http://localhost:3001/api/categories/1 (PUT), updating a category
   router.put('/:id', (req, res) => {
     // update a category by its `id` value
