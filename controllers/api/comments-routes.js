@@ -37,9 +37,13 @@ router.get('/', (req, res) => {
     // check the session
     if (req.session) {
       Comment.create({
-        body: req.body.body,
-        user_id: req.body.user_id,
-        post_id: req.body.post_id
+        body: req.body.comment_text,   ///req.body.body
+        user_id: req.session.user_id, //req.body.user_id
+        post_id: req.body.post_id,
+        user: req.session.username
+
+       // user_id: req.session.user_id, ///req.body.user_id
+        
       }
       
       )
