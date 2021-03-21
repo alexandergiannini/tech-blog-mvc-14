@@ -1,14 +1,15 @@
+<link rel="stylesheet" href="/stylesheets/style.css">
+
 <ol class="post-list">
   {{#each posts as |post|}}
   <li>
     <article class="post">
       <div class="title">
-        <a href="{{post.title}}" target="_blank">{{post.title}}</a>
-        <span>({{post.title}})</span>
+        <a class="homepage-post-title"href="/post/{{post.id}}">{{post.title}}</a> 
+       <span> by: {{user.username}}</span>
       </div>
-      <div class="meta">
-        {{post.body}} point(s) by {{post.body}} on
-        {{post.created_at}}
+      <div class="meta homepage-post-body">
+        {{post.body}}
       </div>
     </article>
   </li>

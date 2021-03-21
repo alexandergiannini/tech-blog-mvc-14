@@ -29,8 +29,14 @@ router.post('/', (req, res) => {
      // id: req.body.id,
       username: req.body.username,
       password: req.body.password
-    }).then(result => {
-      res.json(result);
+    }).then(dbUserData => {
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+    
+        res.json(dbUserData);
+      });
     })
     // create a new category
   });
@@ -39,11 +45,13 @@ router.post('/', (req, res) => {
 
   ////this url doesnt work (or when i try to login to a new user -> i need hooks??)
   router.post('/login', (req, res) => {
+    console.log(req.body)
     User.findOne({
       where: {
         username: req.body.username
       }
     }).then(dbUserData => {
+      console.log(dbUserData)
       if (!dbUserData) {
         res.status(400).json({ message: 'No user with that email address!' });
         return;
@@ -67,7 +75,15 @@ router.post('/', (req, res) => {
     });
   });
 
-
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end()
+      })
+    } else {
+      res.status(404).end()
+    }
+})
 
 
 

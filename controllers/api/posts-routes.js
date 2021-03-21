@@ -29,7 +29,8 @@ router.post('/', (req, res) => {
     Post.create({
      // id: req.body.id,
       title: req.body.title,
-      body: req.body.body
+      body: req.body.body,
+      user_id: req.body.user_id
     }).then(result => {
       res.json(result);
     })
@@ -39,10 +40,8 @@ router.post('/', (req, res) => {
   router.put('/:id', (req, res) => {
     // update a category by its `id` value
    Post.update(
-      {
-        title: req.body.title,
-        body: req.body.body
-    },{
+     req.body
+    ,{
       where: {
         id: req.params.id
       }

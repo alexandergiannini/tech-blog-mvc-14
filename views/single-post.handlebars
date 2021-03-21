@@ -1,0 +1,42 @@
+ <link rel="stylesheet" href="/stylesheets/style.css">
+
+<article class="post">
+  <div class="title">
+    <h2>{{post.title}} by {{post.user.username}} </h2>
+    <span>{{post.body}}</span>
+  </div>
+
+
+<form class="comment-form">
+  <div>
+    <textarea name="comment-body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add comment</button>
+  </div>
+</form>
+
+<h3>Comments displayed below:</h3>
+<div class="comments">
+  {{#each post.comments as |comment|}}
+  <section class="comment">
+    <div class="meta">
+      
+    </div>
+    <div id="comments-text"class="text">
+    <ul>
+        <li>{{comment.body}} {{comments.user.username}}</li>
+    </ul>
+    
+    </div>
+  </section>
+  {{/each}}
+</div>
+
+
+
+
+
+</article>
+<script src="/javascript/comment.js"></script>

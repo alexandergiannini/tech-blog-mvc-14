@@ -1,7 +1,70 @@
+
 a {
-    color: red;
+    color: lightyellow;
 }
 
 nav {
     color: green;
+    background-color:#241506;
+    size: 200px;
+}
+
+.nav-item {
+    padding-left: 10px;
+    font-size: 35px;
+    text-decoration: none;
+}
+
+.tech-blog-header-text {
+    font-size: 55px;
+    padding-left: 20px;
+}
+
+.post-title {
+    size: 100px;
+}
+
+.new-post-header {
+    font-size: 30px;
+    color: green;
+}
+
+#post-title {
+    height: 50px;
+    padding-bottom: 10px;
+    margin-left: 55px;
+}
+
+#post-body {
+    height: 100px;
+    margin-top: 10px;
+}
+
+#post-create-btn {
+    height: 50px;
+    width: 100px;
+    margin-left: 100px;
+    margin-top: 40px;
+}
+
+.title {
+    font-size: 70px;
+    border-color: red;
+}
+
+.homepage-post-title {
+    color: black;
+    text-decoration: underline;
+}
+
+.homepage-post-body {
+    font-size: 40px;
+}
+
+.comment-form {
+    display: inline-flex;
+}
+
+#comments-text {
+    font-size: 20px;
 }

@@ -24,21 +24,41 @@ router.get('/', (req, res) => {
   });
 
 //http://localhost:3001/api/categories (POST), creating a category endpoint
-router.post('/', (req, res) => {
-    Comment.create({
-      body: req.body.body
-    }).then(result => {
-      res.json(result);
-    })
+//router.post('/', (req, res) => {
+ //   Comment.create(
+  //   req.body
+ //   ).then(result => {
+  //    res.json(result);
+  //  })
     // create a new category
+  //});
+
+  router.post('/', (req, res) => {
+    // check the session
+    if (req.session) {
+      Comment.create({
+        body: req.body.body,
+        user_id: req.body.user_id,
+        post_id: req.body.post_id
+      }
+      
+      )
+        .then(dbCommentData => res.json(dbCommentData))
+        .catch(err => {
+          console.log(err);
+          res.status(400).json(err);
+        });
+    }
   });
+
+
+
+
   ///http://localhost:3001/api/categories/1 (PUT), updating a category
   router.put('/:id', (req, res) => {
     // update a category by its `id` value
    Comment.update(
-      {
-        body: req.body.body
-    },{
+      req.body,{
       where: {
         id: req.params.id
       }
