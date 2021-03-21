@@ -88,19 +88,6 @@ router.get('/post/:id', (req, res) => {
     res.render('single-post', {post, comment})
   })
 
-
-
-
-
-  
-////  const post = {
-//   id: 1,
- //   title: 'Handlebars Docs',
- //   body: 'testing'
- // };
-
-
- // res.render('single-post', { post });
 });
 
 

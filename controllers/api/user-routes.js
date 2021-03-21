@@ -3,7 +3,6 @@ const { User, Post, Comment } = require('../../models/');///User.js
 
 //  (http://localhost:3001/api/users/)
 router.get('/', (req, res) => {
-    // find all categories, includes its associated Products
     User.findAll({
    //   include: [Post, Comment]
     }).then(result => {
@@ -12,7 +11,6 @@ router.get('/', (req, res) => {
   });
 
   router.get('/:id', (req, res) => {
-    // find one category by its `id` value, include its associated Products
     User.findOne({
       where: {
         id: req.params.id
@@ -23,7 +21,7 @@ router.get('/', (req, res) => {
     })
   });
 
-//http://localhost:3001/api/categories (POST), creating a category endpoint
+//creating a user endpoint
 router.post('/', (req, res) => {
     User.create({
      // id: req.body.id,
@@ -38,12 +36,10 @@ router.post('/', (req, res) => {
         res.json(dbUserData);
       });
     })
-    // create a new category
   });
 
 
 
-  ////this url doesnt work (or when i try to login to a new user -> i need hooks??)
   router.post('/login', (req, res) => {
     console.log(req.body)
     User.findOne({
@@ -87,9 +83,8 @@ router.post('/logout', (req, res) => {
 
 
 
-  ///http://localhost:3001/api/categories/1 (PUT), updating a category
+  ///http://localhost:3001/api/user/1 (PUT), updating a user
   router.put('/:id', (req, res) => {
-    // update a category by its `id` value
    User.update(
       {
       username: req.body.username,
@@ -104,9 +99,8 @@ router.post('/logout', (req, res) => {
     })
   });
   
-  /////http://localhost:3001/api/categories/1 (DELETE), deleting a category endpoint
+  /////deleting a user endpoint
   router.delete('/:id', (req, res) => {
-    // delete a category by its `id` value
     User.destroy({
       where: {
         id: req.params.id
