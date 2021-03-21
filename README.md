@@ -4,4 +4,4 @@
 
 # Link of deployed application: https://warm-tor-86189.herokuapp.com/
 
-# Screenshot of project: 
+# Screenshot of project: ![Screen Shot 2021-03-21 at 3 52 02 PM](https://user-images.githubusercontent.com/74731953/111923645-62da5700-8a5d-11eb-9585-8222e030bcc0.png)
