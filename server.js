@@ -35,7 +35,7 @@ app.use(session(sess));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// turn on routes
+// turn on routes adsdasd
 app.use(routes);
 
 // turn on connection to db and server
